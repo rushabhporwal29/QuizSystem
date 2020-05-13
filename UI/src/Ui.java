@@ -47,9 +47,11 @@ public class Ui implements ActionListener{
 		frame.setVisible(true);
 	}
 	
+
 	public static void main(String[] args) {
 		new Ui();
 	}
+	
 	@Override
 	public void actionPerformed(ActionEvent obj) {
 		// TODO Auto-generated method stub
@@ -58,17 +60,18 @@ public class Ui implements ActionListener{
 			username=tusername.getText();
 			password= String.valueOf(Jpassword.getPassword());
 			try {
-				Class.forName("oracle.jdbc.driver.OracleDriver");
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			int flag=0;
 			try {
-				Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "vinithande4", "Swarali123");
+				Connection con=DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/jxebSlaCrO","jxebSlaCrO","rF79Uhy1Yw");
 				System.out.println("Connection Success ...");
 				Statement stmt=con.createStatement();
-				ResultSet rs=stmt.executeQuery("select * from form");
+				ResultSet rs=stmt.executeQuery("select * from Form");
 				
 				while(rs.next()){
 					if(username.equals(rs.getString(1))) {

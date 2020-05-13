@@ -43,6 +43,7 @@ public class QuizIndex implements ActionListener {
         }
         if(e.getSource()==bgivequiz)
         {
+            int flag=0;
             frame.dispose();
             try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -53,31 +54,11 @@ public class QuizIndex implements ActionListener {
             int a=JOptionPane.showConfirmDialog(frame,"Are You Sure ? ");
             if(a==JOptionPane.YES_OPTION)
             {
-                Connection con;
                 try {
-                    con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "vinithande4", "Swarali123");
-                    System.out.println("Connection Succuess ....");
-                    Statement stmt=con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-                    ResultSet rs=stmt.executeQuery("select * from quiz");
-                    String que,optionA,optionB,optionC,optionD;
-                    while (rs.next())
-                    {
-                        que=rs.getString(1);
-                        optionA=rs.getString(2);
-                        optionB=rs.getString(3);
-                        optionC=rs.getString(4);
-                        optionD=rs.getString(5);
-                        if(rs.isFirst())
-                            new GiveQuiz(que,optionA,optionB,optionC,optionD,1);
-                        else
-                            new GiveQuiz(que,optionA,optionB,optionC,optionD);
-
-                    }
-                } catch (SQLException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
+                    new GiveQuiz1();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
                 }
-
             }
         }
 

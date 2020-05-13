@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -27,29 +28,29 @@ public class Ui1 implements ActionListener{
 		panel=new JPanel();
 		tusername=new JTextField(10);
 		tmobile=new JTextField(10);
-		temail=new JTextField(25);
+		temail=new JTextField(10);
 		password=new JPasswordField(10);
 		confirmpassword=new JPasswordField(10);
-		lcreateuser=new JLabel("create new user name:");
+		lcreateuser=new JLabel("  new user name:");
 		lcreatepass=new JLabel("create password:");
 		lconfirmpass=new JLabel("confirm password:");
-		lmobile=new JLabel("Mobile : ");
-		lemail=new JLabel("E-mail : ");
+		lmobile=new JLabel("         Mobile : ");
+		lemail=new JLabel("         E-mail : ");
 		button=new JButton("create account");
 		button.addActionListener(this);
-		panel.add(lcreateuser);
-		panel.add(tusername);
-		panel.add(lcreatepass);
-		panel.add(password);
-		panel.add(lconfirmpass);
-		panel.add(confirmpassword);
-		panel.add(lmobile);
-		panel.add(tmobile);
-		panel.add(lemail);
-		panel.add(temail);
-		panel.add(button);
+		panel.add(lcreateuser, BorderLayout.LINE_START);
+		panel.add(tusername,BorderLayout.BEFORE_LINE_BEGINS);
+		panel.add(lcreatepass,BorderLayout.LINE_START);
+		panel.add(password,BorderLayout.BEFORE_LINE_BEGINS);
+		panel.add(lconfirmpass,BorderLayout.LINE_START);
+		panel.add(confirmpassword,BorderLayout.BEFORE_LINE_BEGINS);
+		panel.add(lmobile,BorderLayout.LINE_START);
+		panel.add(tmobile,BorderLayout.BEFORE_LINE_BEGINS);
+		panel.add(lemail,BorderLayout.LINE_START);
+		panel.add(temail,BorderLayout.BEFORE_LINE_BEGINS);
+		panel.add(button,BorderLayout.CENTER);
 		frame.add(panel);
-		frame.setSize(350,350);
+		frame.setSize(250,250);
 		frame.setVisible(true);
 	}
 	public static void main(String[] args) {
@@ -66,12 +67,12 @@ public class Ui1 implements ActionListener{
 		if(obj.getSource()==button) {
 			if(dpassword.equals(cpassword)) {
 				try {
-					Class.forName("oracle.jdbc.driver.OracleDriver");
-					Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "vinithande4", "Swarali123");
+					Class.forName("com.mysql.cj.jdbc.Driver");
+					Connection con=DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/jxebSlaCrO","jxebSlaCrO","rF79Uhy1Yw");
 					System.out.println("Connection Success ...");
 					Statement stmt = con.createStatement();
-					ResultSet rs = stmt.executeQuery("select * from form");
-					PreparedStatement pr = con.prepareStatement("insert into form values(?,?,?,?)");
+					ResultSet rs = stmt.executeQuery("select * from Form");
+					PreparedStatement pr = con.prepareStatement("INSERT INTO `Form`(`Username`, `Password`, `Mobile`, `Email`) VALUES (?,?,?,?)");
 					pr.setString(1, dusername);
 					pr.setString(2, dpassword);
 					pr.setString(3,mobile);

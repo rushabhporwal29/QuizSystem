@@ -68,9 +68,9 @@ public class GiveQuiz implements ActionListener {
             ans="D";
         System.out.println("Your Answer : "+ans);
         try {
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "vinithande4", "Swarali123");
-            System.out.println("Connection Succuess ....");
+        	Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con=DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/jxebSlaCrO","jxebSlaCrO","rF79Uhy1Yw");
+			System.out.println("Connection Succuess ....");
             PreparedStatement pst=con.prepareStatement("insert into answers values (?)");
             pst.setString(1,ans);
             pst.execute();

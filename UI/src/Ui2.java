@@ -77,12 +77,8 @@ public class Ui2 implements ActionListener{
 		System.out.println(dgender);
 		if(obj.getSource()==button) {
 			try {
-				Class.forName("oracle.jdbc.driver.OracleDriver");
-			} catch (ClassNotFoundException e1) {
-				e1.printStackTrace();
-			}
-			try {
-				Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","vinithande4","Swarali123");
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				Connection con=DriverManager.getConnection("jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7332773","sql7332773","9tkynlTlTH");
 				PreparedStatement pr=con.prepareStatement("insert into examform values(?,?,?,?,?,?,?,?)");
 				pr.setString(1, dfname);
 				pr.setString(2, dlname);
@@ -94,6 +90,8 @@ public class Ui2 implements ActionListener{
 				pr.setString(5, dcountry);
 				pr.execute();
 			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}catch (ClassNotFoundException e1) {
 				e1.printStackTrace();
 			}
 		}

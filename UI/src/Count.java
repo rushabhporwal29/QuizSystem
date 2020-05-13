@@ -35,7 +35,8 @@ public class Count implements ActionListener {
         if(e.getSource()==bconfirm)
         {
             int count= Integer.parseInt(tcount.getText());
-            for(int i=0;i<count;i++)
+            new GenerateQuiz(1);
+            for(int i=0;i<count-1;i++)
                 new GenerateQuiz();
         }
         frame.dispose();
